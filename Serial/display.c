@@ -11,6 +11,16 @@ int main() {
   int i;
   for (int i = 0; i < GRID_HEIGHT; i++) {
   	grid[i] = malloc(GRID_WIDTH * sizeof(*grid[i]));
+	if (grid == NULL) {
+		printf("malloc failed to allocate memory\n");
+		exit(1);
+	}
+
+  }
+
+  if (grid == NULL) {
+	printf("malloc failed to allocate memory\n");  
+	exit(1);
   }
 
   //Initialise with - using nested-for loop
