@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include "stdlib.h"
 
 int main() {
 
@@ -6,7 +7,7 @@ int main() {
   const int GRID_HEIGHT = 15;
 
   //Create 2D structure with 
-  char char **grid = malloc(GRID_HEIGHT * sizeof(*grid));
+  char **grid = malloc(GRID_HEIGHT * sizeof(*grid));
   int i;
   for (int i = 0; i < GRID_HEIGHT; i++) {
   	grid[i] = malloc(GRID_WIDTH * sizeof(*grid[i]));
