@@ -11,19 +11,25 @@ int main() {
   char **grid = malloc(GRID_HEIGHT * sizeof(*grid));
   int i;
   for (int i = 0; i < GRID_HEIGHT; i++) {
-  	grid[i] = malloc(GRID_WIDTH * sizeof(*grid[i]));
-	if (*grid == NULL) {
-		printf("malloc failed to allocate memory\n");
-		exit(1);
-	}
+      grid[i] = malloc(GRID_WIDTH * sizeof(*grid[i]));
+      //Ensures each inner grid has been allocated correctly
+      if (*grid == NULL) {
+          printf("malloc failed to allocate memory\n");
+          exit(1);
+      }
   }
-
+  //Checks to make sure the outer grid has been correctly allocated
   if (grid == NULL) {
-	printf("malloc failed to allocate memory\n");  
-	exit(1);
+      printf("malloc failed to allocate memory\n");  
+      exit(1);
   }
 
   //Initialise with - using nested-for loop
+  for (int i = 0; i < GRID_WIDTH; i++) {
+      for (int j = 0; j < GRID_HEIGHT; j++) {
+          grid[i][j] = '-';
+      }
+  }
 
   int gen = 0;
 
@@ -32,20 +38,20 @@ int main() {
   
   //Deallocate memory
   for (i = 0; i < GRID_HEIGHT; i++) {
-  	free(grid[i]);
+      free(grid[i]);
   }
   free(grid);
   
 }
 
 
-void display(int generation, int width, int height) {
-    printf("Generation: %d \n", generation);
-
-    for (int i = 0; i < width; i++ ) {
-	for (int j = 0; j < height; j++) {
-	    printf("%d:%d ", i, j);
-	}
-	printf("\n");
-    }
+void display(int generation, int width, int height, char **grid) {
+  printf("Generation: %d \n", generation);
+  printf("%c", grid[0][0]);
+  for (int i = 0; i < width; i++ ) {
+      for (int j = 0; j < height; j++) {
+          printf("%c", grid[i][j]);
+      }
+      printf("\n");
+  }
 }
